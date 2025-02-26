@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="IT_LiquidacionFacturas.Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default1.aspx.cs" Inherits="IT_LiquidacionFacturas.Default" %>
 
 <!DOCTYPE html>
 
