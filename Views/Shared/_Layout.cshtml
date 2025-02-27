@@ -1,40 +1,181 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+    <title>
+        <asp:ContentPlaceHolder ID="title1" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+    @Styles.Render("~/Vendors/bootstrap")
+    
+    <asp:ContentPlaceHolder ID="head1" runat="server">
+    </asp:ContentPlaceHolder>
 </head>
-<body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
+<body class="nav-md">
+    <form id="form1" runat="server">
+        <div class="container body">
+            <div class="main_container">
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0;">
+
+                        </div>
+                        <div class="clearfix"></div>
+                        <!-- menu profile quick info -->
+                        <div class="profile clearfix">
+                            <div class="profile_pic">
+
+                            </div>
+                            <div class="profile_info" runat="server" id="divuser">
+                                <span>Bienvenido,</span>
+                                <span class="user-name">
+                                    <asp:Label CssClass="navbar-link" runat="server" ID="lblNombre">  </asp:Label>
+                                    <asp:Label CssClass="navbar-link" runat="server" ID="lblApellido">  </asp:Label>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- /menu profile quick info -->
+                        <br />
+                        <!-- Menú lateral -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="menu_section">
+                                <h3>Módulos</h3>
+                                <ul class="nav side-menu">
+                                    <!-- Administración general -->
+                                    <li>
+                                        <a><i class="fa fa-sitemap"></i> Administración general <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li>@Html.ActionLink("Usuarios", "Usuarios", "AdminGeneral", new { area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Accesos a usuarios", "UsuariosAccesos", "AdminGeneral", new { area = "" }, new { @class = "nav-link" })</li>
+                                        </ul>
+                                    </li>
+                                    <!-- Administración de actividades -->
+                                    <li>
+                                        <a><i class="fa fa-sitemap"></i> Administración de actividades <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li>@Html.ActionLink("Fincas", "Fincas", "AdminActividades", new { area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Lotes", "Lotes", "AdminActividades", new { area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Procesos", "Procesos", "AdminActividades", new { area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Actividades", "Actividades", "AdminActividades", new { area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Proveedores", "Proveedores", "AdminActividades", new { area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Registros de actividades", "RegistroActividades", "AdminActividades", new { area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Registros de cosecha", "RegistroCosecha", "AdminActividades", new { area = "" }, new { @class = "nav-link" })</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Botones del menú lateral -->
+                        <div class="sidebar-footer hidden-small">
+                            <a data-toggle="tooltip" data-placement="top" title="Ajustes">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Pantalla Completa">
+                                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Contraseña" href="@Url.Action("Contrasena", "Extras")">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Cerrar Sesión" href="@Url.Action("Logout", "Account")">
+                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Barra superior (top_nav) -->
+                <div class="top_nav">
+                    <div class="nav_menu">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <nav class="nav navbar-nav">
+                            <ul class="navbar-right">
+                                <!-- Menú de usuario -->
+                                <li class="nav-item dropdown open">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                        <img src="~/Images/user.png" alt="..."> Usuario
+                                    </a>
+                                    <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="javascript:;">Perfil</a>
+                                        <a class="dropdown-item" href="@Url.Action("Contrasena", "Extras")">Contraseña</a>
+                                        <a class="dropdown-item" href="javascript:;">Ayuda</a>
+                                        <a class="dropdown-item" href="@Url.Action("Logout", "Account")">Cerrar sesión</a>
+                                    </div>
+                                </li>
+
+                                <!-- Notificaciones -->
+                                <li class="nav-item dropdown open">
+                                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-envelope-o"></i>
+                                        <span class="badge bg-green">6</span>
+                                    </a>
+                                    <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
+                                        <!-- Mensajes de notificaciones -->
+                                        <li class="nav-item">
+                                            <a class="dropdown-item">
+                                                <span class="image"><img src="~/Images/user.png" alt="Profile Image" /></span>
+                                                <span>
+                                                    <span>Administrador</span>
+                                                    <span class="time">Hace 3 minutos</span>
+                                                </span>
+                                                <span class="message">Actualización realizada</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <div class="text-center">
+                                                <a class="dropdown-item">
+                                                    <strong>Ver todas las alertas</strong>
+                                                    <i class="fa fa-angle-right"></i>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <asp:ContentPlaceHolder ID="body1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <!-- Pie de página -->
+                <footer>
+                    <div class="pull-right">
+                        Grupo Enlasa - Admin Template by Tic <a href="">Bootstrap</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
             </div>
         </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year</p>
+            </footer>
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/fastclick")
+        @Scripts.Render("~/bundles/nprogress")
+        @Scripts.Render("~/bundles/chartjs")
+        @Scripts.Render("~/bundles/gauge")
+        @Scripts.Render("~/bundles/bootstrap-progressbar")
+        @Scripts.Render("~/bundles/icheck")
+        @Scripts.Render("~/bundles/skycons")
+        @Scripts.Render("~/bundles/flot")
+        @Scripts.Render("~/bundles/flot-plugins")
+        @Scripts.Render("~/bundles/datejs")
+        @Scripts.Render("~/bundles/jqvmap")
+        @Scripts.Render("~/bundles/daterangepicker")
+        @Scripts.Render("~/bundles/custom")
+    </form>
 </body>
 </html>

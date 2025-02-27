@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.IO;
+using System.Web;
 using System.Web.Optimization;
 
 namespace IT_LiquidacionFacturas
@@ -8,23 +9,48 @@ namespace IT_LiquidacionFacturas
         // Para obtener más información sobre las uniones, visite https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            // Bundle para todos los archivos CSS de la carpeta ~/vendors/bootstrap
+            bundles.Add(new StyleBundle("~/Vendors/bootstrap").Include(
+                     "~/vendors/bootstrap/dist/css/bootstrap-grid.css",
+                     "~/vendors/bootstrap/dist/css/bootstrap-grid.css.map",
+                     "~/vendors/bootstrap/dist/css/bootstrap-grid.min.css",
+                     "~/vendors/bootstrap/dist/css/bootstrap-grid.min.css.map",
+                     "~/vendors/bootstrap/dist/css/bootstrap-reboot.css",
+                     "~/vendors/bootstrap/dist/css/bootstrap-reboot.css.map",
+                     "~/vendors/bootstrap/dist/css/bootstrap-reboot.min.css",
+                     "~/vendors/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+                     "~/vendors/bootstrap/dist/css/bootstrap.css",
+                     "~/vendors/bootstrap/dist/css/bootstrap.css.map",
+                     "~/vendors/bootstrap/dist/css/bootstrap.min.css",
+                     "~/vendors/bootstrap/dist/css/bootstrap.min.css.map",
+                     "~/Content/bootstrap/"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+            // Bundle para todos los archivos CSS de la carpeta ~/vendors/bootstrap/dist/css
+            bundles.Add(new StyleBundle("~/Vendors/bootstrap/css").Include(
+                GetFilesFromFolder("~/vendors/bootstrap/", "*.css")
+            ));
 
-            // Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información sobre los formularios.  De esta manera estará
-            // para la producción, use la herramienta de compilación disponible en https://modernizr.com para seleccionar solo las pruebas que necesite.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+            // Bundle para todos los archivos JS de la carpeta ~/vendors/bootstrap/dist/js
+            bundles.Add(new ScriptBundle("~/Vendors/bootstrap/js").Include(
+                GetFilesFromFolder("~/vendors/bootstrap/", "*.js")
+            ));
 
-            bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+        }
+        private static string[] GetFilesFromFolder(string virtualFolder, string searchPattern)
+        {
+            // Obtener la ruta física de la carpeta
+            string physicalFolder = HttpContext.Current.Server.MapPath(virtualFolder);
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            // Obtener todos los archivos que coincidan con el patrón de búsqueda
+            var files = Directory.GetFiles(physicalFolder, searchPattern);
+
+            // Convertir las rutas físicas a rutas virtuales
+            for (int i = 0; i < files.Length; i++)
+            {
+                files[i] = virtualFolder + "/" + Path.GetFileName(files[i]);
+            }
+
+            return files;
         }
     }
 }
