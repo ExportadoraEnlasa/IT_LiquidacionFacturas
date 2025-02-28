@@ -9,48 +9,84 @@ namespace IT_LiquidacionFacturas
         // Para obtener más información sobre las uniones, visite https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            // Bundle para todos los archivos CSS de la carpeta ~/vendors/bootstrap
             bundles.Add(new StyleBundle("~/Vendors/bootstrap").Include(
-                     "~/vendors/bootstrap/dist/css/bootstrap-grid.css",
-                     "~/vendors/bootstrap/dist/css/bootstrap-grid.css.map",
-                     "~/vendors/bootstrap/dist/css/bootstrap-grid.min.css",
-                     "~/vendors/bootstrap/dist/css/bootstrap-grid.min.css.map",
-                     "~/vendors/bootstrap/dist/css/bootstrap-reboot.css",
-                     "~/vendors/bootstrap/dist/css/bootstrap-reboot.css.map",
-                     "~/vendors/bootstrap/dist/css/bootstrap-reboot.min.css",
-                     "~/vendors/bootstrap/dist/css/bootstrap-reboot.min.css.map",
-                     "~/vendors/bootstrap/dist/css/bootstrap.css",
-                     "~/vendors/bootstrap/dist/css/bootstrap.css.map",
-                     "~/vendors/bootstrap/dist/css/bootstrap.min.css",
-                     "~/vendors/bootstrap/dist/css/bootstrap.min.css.map",
-                     "~/Content/bootstrap/"));
-
-            // Bundle para todos los archivos CSS de la carpeta ~/vendors/bootstrap/dist/css
-            bundles.Add(new StyleBundle("~/Vendors/bootstrap/css").Include(
-                GetFilesFromFolder("~/vendors/bootstrap/", "*.css")
+                "~/vendors/bootstrap/dist/css/bootstrap.min.css",
+                "~/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"
             ));
-
-            // Bundle para todos los archivos JS de la carpeta ~/vendors/bootstrap/dist/js
-            bundles.Add(new ScriptBundle("~/Vendors/bootstrap/js").Include(
-                GetFilesFromFolder("~/vendors/bootstrap/", "*.js")
+            bundles.Add(new StyleBundle("~/Vendors/font-awesome").Include(
+                "~/vendors/font-awesome/css/font-awesome.min.css"
             ));
-
+            bundles.Add(new StyleBundle("~/Vendors/nprogress").Include(
+                "~/vendors/nprogress/nprogress.css",
+                "~/vendors/nprogress/nprogress.js"
+            ));
+            bundles.Add(new StyleBundle("~/Vendors/iCheck").Include(
+                "~/vendors/iCheck/skins/flat/green.css",
+                "~/vendors/iCheck/icheck.min.js"
+            ));
+            bundles.Add(new StyleBundle("~/Vendors/bootstrap-progressbar").Include(
+                "~/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css",
+                "~/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"
+            ));
+            bundles.Add(new StyleBundle("~/Vendors/jqvmap").Include(
+                "~/vendors/jqvmap/dist/jqvmap.min.css"
+            ));
+            bundles.Add(new StyleBundle("~/Vendors/bootstrap-daterangepicker").Include(
+                "~/vendors/bootstrap-daterangepicker/daterangepicker.css"
+            ));
+            bundles.Add(new StyleBundle("~/build/css").Include(
+               "~/build/css/custom.min.css"
+           ));
+            bundles.Add(new StyleBundle("~/vendors/jquery").Include(
+               "~/vendors/jquery/dist/jquery.min.js"
+           ));
+            bundles.Add(new StyleBundle("~/vendors/fastclick").Include(
+               "~/vendors/fastclick/lib/fastclick.js"
+           ));
+            bundles.Add(new StyleBundle("~/vendors/Chart.js").Include(
+               "~/vendors/Chart.js/dist/Chart.min.js"
+           ));
+            bundles.Add(new StyleBundle("~/vendors/gauge.js").Include(
+               "~/vendors/gauge.js/dist/gauge.min.js"
+           ));
+            bundles.Add(new StyleBundle("~/vendors/skycons").Include(
+               "~/vendors/skycons/skycons.js"
+           ));
+            bundles.Add(new StyleBundle("~/vendors/Flot").Include(
+              "~/vendors/Flot/jquery.flot.js",
+              "~/vendors/Flot/jquery.flot.pie.js",
+              "~/vendors/Flot/jquery.flot.time.js",
+              "~/vendors/Flot/jquery.flot.stack.js",
+              "~/vendors/Flot/jquery.flot.resize.js"
+          ));
+            bundles.Add(new StyleBundle("~/vendors/flot.orderbars").Include(
+               "~/vendors/flot.orderbars/js/jquery.flot.orderBars.js"
+           ));
+            bundles.Add(new StyleBundle("~/vendors/flot-spline").Include(
+               "~/vendors/flot-spline/js/jquery.flot.spline.min.js"
+           ));
+            bundles.Add(new StyleBundle("~/vendors/flot.curvedlines").Include(
+              "~/vendors/flot.curvedlines/curvedLines.js"
+          ));
+            bundles.Add(new StyleBundle("~/vendors/DateJS").Include(
+              "~/vendors/DateJS/build/date.js"
+          ));
+            bundles.Add(new StyleBundle("~/vendors/jqvmap").Include(
+              "~/vendors/jqvmap/dist/jquery.vmap.js",
+              "~/vendors/jqvmap/dist/maps/jquery.vmap.world.js",
+              "~/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"
+          ));
+            bundles.Add(new StyleBundle("~/vendors/moment").Include(
+             "~/vendors/moment/min/moment.min.js"
+          ));
+            bundles.Add(new StyleBundle("~/vendors/moment").Include(
+             "~/vendors/moment/min/moment.min.js"
+          ));
+            bundles.Add(new StyleBundle("~/vendors/bootstrap-daterangepicker").Include(
+             "~/vendors/bootstrap-daterangepicker/daterangepicker.js"
+          ));
+            bundles.Add(new StyleBundle("~/build/js").Include(
+             "~/build/js/custom.min.js"
+          ));
         }
-        private static string[] GetFilesFromFolder(string virtualFolder, string searchPattern)
-        {
-            // Obtener la ruta física de la carpeta
-            string physicalFolder = HttpContext.Current.Server.MapPath(virtualFolder);
-
-            // Obtener todos los archivos que coincidan con el patrón de búsqueda
-            var files = Directory.GetFiles(physicalFolder, searchPattern);
-
-            // Convertir las rutas físicas a rutas virtuales
-            for (int i = 0; i < files.Length; i++)
-            {
-                files[i] = virtualFolder + "/" + Path.GetFileName(files[i]);
-            }
-
-            return files;
-        }
-    }
 }
