@@ -132,13 +132,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MP1.Master.cs">
-      <DependentUpon>MP1.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MP1.Master.designer.cs">
-      <DependentUpon>MP1.Master</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -180,15 +173,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Jeff.html" />
-    <Content Include="JeffersonIbanez.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="MP1.Master" />
     <Content Include="docs\fonts\fonts\fontawesome-webfont.eot" />
     <Content Include="docs\fonts\fonts\fontawesome-webfont.ttf" />
     <Content Include="docs\fonts\fonts\fontawesome-webfont.woff" />
