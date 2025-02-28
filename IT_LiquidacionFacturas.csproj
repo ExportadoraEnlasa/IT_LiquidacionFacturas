@@ -2821,6 +2821,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="src\scss\custom.scss" />
     <Content Include="src\scss\daterangepicker.scss" />
+    <Content Include="Views\Shared\SildBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

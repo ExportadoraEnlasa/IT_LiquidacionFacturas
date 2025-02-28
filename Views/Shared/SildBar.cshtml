@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,8 +14,7 @@
         <asp:ContentPlaceHolder ID="title1" runat="server">
         </asp:ContentPlaceHolder>
     </title>
-    @Styles.Render("~/Vendors/bootstrap/CSS")
-    @Scripts.Render("~/Vendors/bootstrap/JS")
+    @Styles.Render("~/Vendors/bootstrap")
     @Styles.Render("~/Vendors/font-awesome")
     @Styles.Render("~/Vendors/nprogress")
     @Styles.Render("~/Vendors/iCheck")
@@ -19,19 +22,6 @@
     @Styles.Render("~/Vendors/jqvmap")
     @Styles.Render("~/Vendors/bootstrap-daterangepicker")
     @Styles.Render("~/build/css")
-    @Styles.Render("~/Vendors/jquery")
-    @Styles.Render("~/Vendors/fastclick")
-    @Styles.Render("~/Vendors/Chart.js")
-    @Styles.Render("~/Vendors/gauge.js")
-    @Styles.Render("~/Vendors/skycons")
-    @Styles.Render("~/Vendors/Flot")
-    @Styles.Render("~/Vendors/flot.orderbars")
-    @Styles.Render("~/Vendors/flot-spline")
-    @Styles.Render("~/Vendors/flot.curvedlines")
-    @Styles.Render("~/Vendors/DateJS")
-    @Styles.Render("~/Vendors/moment")
-    @Styles.Render("~/Vendors/bootstrap-daterangepicker")
-    @Styles.Render("~/build/js")
     <asp:ContentPlaceHolder ID="head1" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -181,7 +171,19 @@
                 <p>&copy; @DateTime.Now.Year</p>
             </footer>
         </div>
-
+        @Styles.Render("~/Vendors/jquery")
+        @Styles.Render("~/Vendors/fastclick")
+        @Styles.Render("~/Vendors/Chart.js")
+        @Styles.Render("~/Vendors/gauge.js")
+        @Styles.Render("~/Vendors/skycons")
+        @Styles.Render("~/Vendors/Flot")
+        @Styles.Render("~/Vendors/flot.orderbars")
+        @Styles.Render("~/Vendors/flot-spline")
+        @Styles.Render("~/Vendors/flot.curvedlines")
+        @Styles.Render("~/Vendors/DateJS")
+        @Styles.Render("~/Vendors/moment")
+        @Styles.Render("~/Vendors/bootstrap-daterangepicker")
+        @Styles.Render("~/build/js")
     </form>
 </body>
 </html>
