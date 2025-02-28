@@ -89,4 +89,5 @@ namespace IT_LiquidacionFacturas
              "~/build/js/custom.min.js"
           ));
         }
+    }
 }
