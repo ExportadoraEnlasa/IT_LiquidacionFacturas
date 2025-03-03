@@ -113,9 +113,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2822,10 +2824,27 @@
     <Content Include="src\scss\custom.scss" />
     <Content Include="src\scss\daterangepicker.scss" />
     <Content Include="Views\Shared\SildBar.cshtml" />
+    <Content Include="Views\Usuarios\Crear.cshtml" />
+    <Content Include="Views\Usuarios\Modificar.cshtml" />
+    <Content Include="Views\Usuarios\Eliminar.cshtml" />
+    <Content Include="Views\Facturas\Cargar.cshtml" />
+    <Content Include="Views\Facturas\Reclamar.cshtml" />
+    <Content Include="Views\Facturas\Liquidar.cshtml" />
+    <Content Include="Views\Empresas\Crear.cshtml" />
+    <Content Include="Views\Empresas\Modificar.cshtml" />
+    <Content Include="Views\Empresas\Eliminar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Data\" />
+    <Folder Include="Views\ApplicationDbContext\" />
+    <Folder Include="Views\Costo1\" />
+    <Folder Include="Views\Costo2\" />
+    <Folder Include="Views\Costo3\" />
+    <Folder Include="Views\Costo4\" />
+    <Folder Include="Views\Costo5\" />
+    <Folder Include="Views\Default\" />
+    <Folder Include="Views\Vendedores\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

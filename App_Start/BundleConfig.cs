@@ -14,22 +14,18 @@ namespace IT_LiquidacionFacturas
             ));
             bundles.Add(new ScriptBundle("~/Vendors/bootstrap/JS").Include(
                 "~/vendors/bootstrap/dist/js/bootstrap.bundle.min.js" 
-
             ));
             bundles.Add(new StyleBundle("~/Vendors/font-awesome").Include(
                 "~/vendors/font-awesome/css/font-awesome.min.css"
-
             ));
             bundles.Add(new StyleBundle("~/Vendors/nprogress/CSS").Include(
                 "~/vendors/nprogress/nprogress.css"
-
             ));
             bundles.Add(new ScriptBundle("~/Vendors/nprogress/JS").Include(
                 "~/vendors/nprogress/nprogress.js"
             ));
             bundles.Add(new StyleBundle("~/Vendors/iCheck/CSS").Include(
                 "~/vendors/iCheck/skins/flat/green.css"
-
             ));
             bundles.Add(new ScriptBundle("~/Vendors/iCheck/JS").Include(
                 "~/vendors/iCheck/icheck.min.js"
@@ -40,7 +36,7 @@ namespace IT_LiquidacionFacturas
             bundles.Add(new ScriptBundle("~/Vendors/bootstrap-progressbar/JS").Include(
                 "~/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"
             ));
-            bundles.Add(new StyleBundle("~/Vendors/jqvmap").Include(
+            bundles.Add(new StyleBundle("~/Vendors/jqvmap/CSS").Include(
                 "~/vendors/jqvmap/dist/jqvmap.min.css"
             ));
             bundles.Add(new StyleBundle("~/Vendors/bootstrap-daterangepicker").Include(

@@ -1,0 +1,45 @@
+﻿@model IT_LiquidacionFacturas.Models.Usuarios
+
+@{
+    ViewBag.Title = "Eliminar Usuario";
+}
+
+<h2>Eliminar Usuario</h2>
+
+<h3>¿Estás seguro de que deseas eliminar este usuario?</h3>
+<div>
+    <h4>Detalles del Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Nombre)</dt>
+        <dd>@Html.DisplayFor(model => model.Nombre)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Apellido)</dt>
+        <dd>@Html.DisplayFor(model => model.Apellido)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.UsuarioNombre)</dt>
+        <dd>@Html.DisplayFor(model => model.UsuarioNombre)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.IdRol)</dt>
+        <dd>@Html.DisplayFor(model => model.IdRol)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.FechaCrea)</dt>
+        <dd>@Html.DisplayFor(model => model.FechaCrea)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.FechaModifica)</dt>
+        <dd>@Html.DisplayFor(model => model.FechaModifica)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Estado)</dt>
+        <dd>@Html.DisplayFor(model => model.Estado)</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>
