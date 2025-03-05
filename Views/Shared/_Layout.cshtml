@@ -151,23 +151,23 @@
                 <!-- page content -->
                 <div class="right_col" role="main">
                     <asp:ContentPlaceHolder ID="body1" runat="server">
+                        <div class="container body-content">
+                            @RenderBody()
+                            <hr />
+                            <footer>
+                                <p></p>
+                            </footer>
+                        </div>
                     </asp:ContentPlaceHolder>
                 </div>
                 <!-- Pie de página -->
                 <footer>
                     <div class="pull-right">
-                        Grupo Enlasa - Admin Template by Tic <a href="">Bootstrap</a>
+                        &copy; @DateTime.Now.Year Grupo Enlasa - Admin Template by <a href="https://getbootstrap.com/">Bootstrap</a>
                     </div>
                     <div class="clearfix"></div>
                 </footer>
             </div>
-        </div>
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year</p>
-            </footer>
         </div>
         @*@Scripts.Render("~/VENDORS/JS")
             @Scripts.Render("~/BUILD/JS")*@

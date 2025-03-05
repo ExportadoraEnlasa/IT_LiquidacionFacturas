@@ -5,7 +5,7 @@ using System.Web;
 
 namespace IT_LiquidacionFacturas.Models
 {
-    public class Facturas
+    public class Factura
     {
         public long IdFactura { get; set; }
         public DateTime FechaEmision { get; set; }
