@@ -1,0 +1,70 @@
+﻿@model List<IT_LiquidacionFacturas.Models.Factura>
+
+@{
+    ViewBag.Title = "Cargar Facturas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Cargar Facturas</h3>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                @using (Html.BeginForm("Cargar", "Facturas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="form-group">
+                        <label for="archivo">Seleccione un archivo .xls:</label>
+                        <input type="file" name="archivo" id="archivo" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cargar</button>
+                }
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger">
+                        @ViewBag.Error
+                    </div>
+                }
+                @if (Model != null && Model.Count > 0)
+                {
+                    <h3>Facturas Cargadas</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Fecha Emisión</th>
+                                <th>Número Autorización</th>
+                                <th>Tipo DTE</th>
+                                <!-- Agrega más columnas según sea necesario -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var factura in Model)
+                            {
+                                <tr>
+                                    <td>@factura.FechaEmision.ToShortDateString()</td>
+                                    <td>@factura.NumeroAutorizacion</td>
+                                    <td>@factura.TipoDTEnombre</td>
+                                    <!-- Agrega más columnas según sea necesario -->
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    using (Html.BeginForm("GuardarEnBaseDeDatos", "Facturas", FormMethod.Post))
+                    {
+                        <button type="submit" class="btn btn-success">Guardar en Base de Datos</button>
+                    }
+                }
+                else
+                {
+                    <p>No hay facturas cargadas.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

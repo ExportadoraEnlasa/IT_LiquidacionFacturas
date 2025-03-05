@@ -10,30 +10,11 @@
         <asp:ContentPlaceHolder ID="title1" runat="server">
         </asp:ContentPlaceHolder>
     </title>
-    @Styles.Render("~/Vendors/bootstrap/CSS")
-    @Scripts.Render("~/Vendors/bootstrap/JS")
-    @Styles.Render("~/Vendors/font-awesome")
-    @Styles.Render("~/Vendors/nprogress")
-    @Styles.Render("~/Vendors/iCheck")
-    @Styles.Render("~/Vendors/bootstrap-progressbar")
-    @Styles.Render("~/Vendors/jqvmap")
-    @Styles.Render("~/Vendors/bootstrap-daterangepicker")
-    @Styles.Render("~/build/css")
-    @Styles.Render("~/Vendors/jquery")
-    @Styles.Render("~/Vendors/fastclick")
-    @Styles.Render("~/Vendors/Chart.js")
-    @Styles.Render("~/Vendors/gauge.js")
-    @Styles.Render("~/Vendors/skycons")
-    @Styles.Render("~/Vendors/Flot")
-    @Styles.Render("~/Vendors/flot.orderbars")
-    @Styles.Render("~/Vendors/flot-spline")
-    @Styles.Render("~/Vendors/flot.curvedlines")
-    @Styles.Render("~/Vendors/DateJS")
-    @Styles.Render("~/Vendors/moment")
-    @Styles.Render("~/Vendors/bootstrap-daterangepicker")
-    @Styles.Render("~/build/js")
+    @Styles.Render("~/VENDORS/CSS")
+    @Styles.Render("~/BUILD/CSS")
     <asp:ContentPlaceHolder ID="head1" runat="server">
     </asp:ContentPlaceHolder>
+    <link rel="icon" type="image/x-icon" href="@Url.Content("~/Images/Logo.ico")" />
 </head>
 <body class="nav-md">
     <form id="form1" runat="server">
@@ -42,19 +23,30 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-
+                            <a href="" class="site_title">
+                                <i class="fa fa-file-text-o"></i><span>
+                                    <asp:Label CssClass="navbar-link"> Liquidación </asp:Label>
+                                </span>
+                            </a>
                         </div>
                         <div class="clearfix"></div>
                         <!-- menu profile quick info -->
                         <div class="profile clearfix">
                             <div class="profile_pic">
-
+                                <img src="@Url.Content("~/Images/user.png")" alt="..." class="img-circle profile_img" />
                             </div>
                             <div class="profile_info" runat="server" id="divuser">
                                 <span>Bienvenido,</span>
                                 <span class="user-name">
-                                    <asp:Label CssClass="navbar-link" runat="server" ID="lblNombre">  </asp:Label>
-                                    <asp:Label CssClass="navbar-link" runat="server" ID="lblApellido">  </asp:Label>
+                                    @if (Session["Nombre"] != null && Session["Apellido"] != null)
+                                    {
+                                        <span class="navbar-link">@Session["Nombre"].ToString()</span>
+                                        <span class="navbar-link">@Session["Apellido"].ToString()</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="navbar-link">Invitado</span>
+                                    }
                                 </span>
                             </div>
                         </div>
@@ -67,23 +59,21 @@
                                 <ul class="nav side-menu">
                                     <!-- Administración general -->
                                     <li>
-                                        <a><i class="fa fa-sitemap"></i> Administración general <span class="fa fa-chevron-down"></span></a>
+                                        <a><i class="fa fa-sitemap"></i> Administración<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li>@Html.ActionLink("Usuarios", "Usuarios", "AdminGeneral", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Accesos a usuarios", "UsuariosAccesos", "AdminGeneral", new { area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Nuevo usuario", "Crear", "Usuarios", new { area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Modificar usuario", "Modificar", "Usuarios", new { area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Eliminar usuario", "Eliminar", "Usuarios", new { area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Asignar usuario", "Asignar", "Usuarios", new { area = "" }, new { @class = "nav-link" })</li>
                                         </ul>
                                     </li>
                                     <!-- Administración de actividades -->
                                     <li>
-                                        <a><i class="fa fa-sitemap"></i> Administración de actividades <span class="fa fa-chevron-down"></span></a>
+                                        <a><i class="fa fa-file-excel-o"></i> Facturas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li>@Html.ActionLink("Fincas", "Fincas", "AdminActividades", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Lotes", "Lotes", "AdminActividades", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Procesos", "Procesos", "AdminActividades", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Actividades", "Actividades", "AdminActividades", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Proveedores", "Proveedores", "AdminActividades", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Registros de actividades", "RegistroActividades", "AdminActividades", new { area = "" }, new { @class = "nav-link" })</li>
-                                            <li>@Html.ActionLink("Registros de cosecha", "RegistroCosecha", "AdminActividades", new { area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Cargar facturas", "Cargar", "Facturas", new { area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Reclamar facturas", "Reclamar", "Facturas", new { area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Liquidar facturas", "Liquidar", "Facturas", new { area = "" }, new { @class = "nav-link" })</li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -106,7 +96,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Barra superior (top_nav) -->
                 <div class="top_nav">
                     <div class="nav_menu">
@@ -127,7 +116,6 @@
                                         <a class="dropdown-item" href="@Url.Action("Logout", "Account")">Cerrar sesión</a>
                                     </div>
                                 </li>
-
                                 <!-- Notificaciones -->
                                 <li class="nav-item dropdown open">
                                     <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
@@ -163,25 +151,51 @@
                 <!-- page content -->
                 <div class="right_col" role="main">
                     <asp:ContentPlaceHolder ID="body1" runat="server">
+                        <div class="container body-content">
+                            @RenderBody()
+                            <hr />
+                            <footer>
+                                <p></p>
+                            </footer>
+                        </div>
                     </asp:ContentPlaceHolder>
                 </div>
                 <!-- Pie de página -->
                 <footer>
                     <div class="pull-right">
-                        Grupo Enlasa - Admin Template by Tic <a href="">Bootstrap</a>
+                        &copy; @DateTime.Now.Year Grupo Enlasa - Admin Template by <a href="https://getbootstrap.com/">Bootstrap</a>
                     </div>
                     <div class="clearfix"></div>
                 </footer>
             </div>
         </div>
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year</p>
-            </footer>
-        </div>
-
+        @*@Scripts.Render("~/VENDORS/JS")
+            @Scripts.Render("~/BUILD/JS")*@
+        <!-- Referencias JS -->
+        <script src="@Url.Content("~/vendors/jquery/dist/jquery.min.js")"></script>
+        <script src="@Url.Content("~/vendors/bootstrap/dist/js/bootstrap.bundle.min.js")"></script>
+        <script src="@Url.Content("~/vendors/fastclick/lib/fastclick.js")"></script>
+        <script src="@Url.Content("~/vendors/nprogress/nprogress.js")"></script>
+        <script src="@Url.Content("~/vendors/Chart.js/dist/Chart.min.js")"></script>
+        <script src="@Url.Content("~/vendors/gauge.js/dist/gauge.min.js")"></script>
+        <script src="@Url.Content("~/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js")"></script>
+        <script src="@Url.Content("~/vendors/iCheck/icheck.min.js")"></script>
+        <script src="@Url.Content("~/vendors/skycons/skycons.js")"></script>
+        <script src="@Url.Content("~/vendors/Flot/jquery.flot.js")"></script>
+        <script src="@Url.Content("~/vendors/Flot/jquery.flot.pie.js")"></script>
+        <script src="@Url.Content("~/vendors/Flot/jquery.flot.time.js")"></script>
+        <script src="@Url.Content("~/vendors/Flot/jquery.flot.stack.js")"></script>
+        <script src="@Url.Content("~/vendors/Flot/jquery.flot.resize.js")"></script>
+        <script src="@Url.Content("~/vendors/flot.orderbars/js/jquery.flot.orderBars.js")"></script>
+        <script src="@Url.Content("~/vendors/flot-spline/js/jquery.flot.spline.min.js")"></script>
+        <script src="@Url.Content("~/vendors/flot.curvedlines/curvedLines.js")"></script>
+        <script src="@Url.Content("~/vendors/DateJS/build/date.js")"></script>
+        <script src="@Url.Content("~/vendors/jqvmap/dist/jquery.vmap.js")"></script>
+        <script src="@Url.Content("~/vendors/jqvmap/dist/maps/jquery.vmap.world.js")"></script>
+        <script src="@Url.Content("~/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js")"></script>
+        <script src="@Url.Content("~/vendors/moment/min/moment.min.js")"></script>
+        <script src="@Url.Content("~/vendors/bootstrap-daterangepicker/daterangepicker.js")"></script>
+        <script src="@Url.Content("~/build/js/custom.min.js")"></script>
     </form>
 </body>
 </html>

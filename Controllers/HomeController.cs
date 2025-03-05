@@ -10,6 +10,10 @@ namespace IT_LiquidacionFacturas.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["Usuario"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 

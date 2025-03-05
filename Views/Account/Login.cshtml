@@ -1,0 +1,72 @@
+﻿@model IT_LiquidacionFacturas.Models.LoginViewModel
+
+@{
+    Layout = null; // No usar un layout para esta vista
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iniciar Sesión</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
+    <link href="@Url.Content("~/vendors/bootstrap/dist/css/bootstrap.min.css")" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="@Url.Content("~/vendors/font-awesome/css/font-awesome.min.css")" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="@Url.Content("~/vendors/nprogress/nprogress.css")" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="@Url.Content("~/vendors/animate.css/animate.min.css")" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="@Url.Content("~/build/css/custom.min.css")" rel="stylesheet">
+</head>
+<body class="login">
+    <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <section class="login_content">
+                    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h1>Iniciar sesión</h1>
+                        <div>
+                            @Html.TextBoxFor(m => m.Usuario, new { @class = "form-control", placeholder = "Usuario", required = "true" })
+                            @Html.ValidationMessageFor(m => m.Usuario, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control", placeholder = "Contraseña", required = "true" })
+                            @Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            @*<a class="reset_pass" href="#">¿Olvidaste tu contraseña?</a>*@
+                            <button type="submit" class="btn btn-round btn-success">Ingresar</button>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+                            @*<p class="change_link">
+                                    ¿Nuevo en el sitio?
+                                    <a href="#" class="to_register">Crear una cuenta</a>
+                                </p>*@
+                            <div class="clearfix"></div>
+                            <br />
+                            <div>
+                                <h1><i class="fa fa-file-text-o"></i> Liquidación de facturas!</h1>
+                                <p>©@DateTime.Now.Year Todos los derechos reservados. IT Grupo Enlasa</p>
+                            </div>
+                        </div>
+                    }
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- SweetAlert Script -->
+    <input type="hidden" id="errorMessage" value="@TempData["ErrorMessage"]">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/JS/SweetAlert.js"></script>
+</body>
+</html>
