@@ -1,6 +1,7 @@
 ﻿using IT_LiquidacionFacturas.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -14,7 +15,11 @@ namespace IT_LiquidacionFacturas.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
-            List<Usuarios> usuarios = new List<Usuarios>();
+            if (Session["Usuario"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            List<Usuario> usuarios = new List<Usuario>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -23,7 +28,7 @@ namespace IT_LiquidacionFacturas.Controllers
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    usuarios.Add(new Usuarios
+                    usuarios.Add(new Usuario
                     {
                         IdUsuario = (long)reader["IdUsuario"],
                         Nombre = reader["Nombre"].ToString(),
@@ -41,12 +46,20 @@ namespace IT_LiquidacionFacturas.Controllers
         // GET: Usuarios/Create
         public ActionResult Create()
         {
+            if (Session["Usuario"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
         // POST: Usuarios/Create
         [HttpPost]
-        public ActionResult Create(Usuarios usuario)
+        public ActionResult Create(Usuario usuario)
         {
+            if (Session["Usuario"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -70,15 +83,17 @@ namespace IT_LiquidacionFacturas.Controllers
         // GET: Usuarios/Modificar/5
         public ActionResult Modificar(long id)
         {
-            Usuarios usuario = new Usuarios();
-
+            if (Session["Usuario"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            Usuario usuario = new Usuario();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT * FROM Usuarios WHERE IdUsuario = @IdUsuario", conn);
                 cmd.Parameters.AddWithValue("@IdUsuario", id);
                 SqlDataReader reader = cmd.ExecuteReader();
-
                 if (reader.Read())
                 {
                     usuario.IdUsuario = (long)reader["IdUsuario"];
@@ -89,14 +104,16 @@ namespace IT_LiquidacionFacturas.Controllers
                     usuario.Estado = (bool)reader["Estado"];
                 }
             }
-
             return View(usuario);
         }
-
         // POST: Usuarios/Modificar/5
         [HttpPost]
-        public ActionResult Modificar(Usuarios usuario)
+        public ActionResult Modificar(Usuario usuario)
         {
+            if (Session["Usuario"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -121,6 +138,10 @@ namespace IT_LiquidacionFacturas.Controllers
         // GET: Usuarios/Eliminar/5
         public ActionResult Eliminar(long id)
         {
+            if (Session["Usuario"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
