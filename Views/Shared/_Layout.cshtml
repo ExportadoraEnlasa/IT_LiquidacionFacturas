@@ -12,7 +12,6 @@
     </title>
     @Styles.Render("~/VENDORS/CSS")
     @Styles.Render("~/BUILD/CSS")
-
     <asp:ContentPlaceHolder ID="head1" runat="server">
     </asp:ContentPlaceHolder>
     <link rel="icon" type="image/x-icon" href="@Url.Content("~/Images/Logo.ico")" />
@@ -24,9 +23,9 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="@Url.Content(" ~ /index2.aspx")" class="site_title">
+                            <a href="" class="site_title">
                                 <i class="fa fa-file-text-o"></i><span>
-                                    <asp:Label CssClass="navbar-link"> Facturas </asp:Label>
+                                    <asp:Label CssClass="navbar-link"> Liquidación </asp:Label>
                                 </span>
                             </a>
                         </div>
@@ -39,8 +38,15 @@
                             <div class="profile_info" runat="server" id="divuser">
                                 <span>Bienvenido,</span>
                                 <span class="user-name">
-                                    <asp:Label CssClass="navbar-link" runat="server" ID="lblNombre">  </asp:Label>
-                                    <asp:Label CssClass="navbar-link" runat="server" ID="lblApellido">  </asp:Label>
+                                    @if (Session["Nombre"] != null && Session["Apellido"] != null)
+                                    {
+                                        <span class="navbar-link">@Session["Nombre"].ToString()</span>
+                                        <span class="navbar-link">@Session["Apellido"].ToString()</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="navbar-link">Invitado</span>
+                                    }
                                 </span>
                             </div>
                         </div>
@@ -90,7 +96,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Barra superior (top_nav) -->
                 <div class="top_nav">
                     <div class="nav_menu">
@@ -111,7 +116,6 @@
                                         <a class="dropdown-item" href="@Url.Action("Logout", "Account")">Cerrar sesión</a>
                                     </div>
                                 </li>
-
                                 <!-- Notificaciones -->
                                 <li class="nav-item dropdown open">
                                     <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
